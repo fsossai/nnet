@@ -3,12 +3,13 @@
 This is a basic experimental implementation of a Fully-connected Multilayer Perceptron that
 can be trained from scratch.
 I created this library to have a feeling of how well a naive C implementation perform, so this is not
-meant to be a complete.
+meant to be a complete package.
 
 ## Structure
 
 The model is not created specifying the linear transformations but rather specifying
-the number of neurons for each layer. Once the layout is known, all the weights are stored **contiguously** in memory.
+the number of neurons for each layer. Once the layout is known, all the weights
+are stored **contiguously** in memory.
 
 All the data relative to the values in the network is stored in a structure with 3 main arrays:
  - _stimulus_ contains the input of each neuron in a forward pass
@@ -20,14 +21,14 @@ Each of these vectors is contiguous in memory, and is accessed by computing an o
 ## Data
 
 The library provides functions only to process datasets in a plain-text format:
-every row must contain all features separated by an ascii character and
-class labels. Both regression and classification tasks can be carried out but
-for the latter the label class must be encoded in one-hot format.
+every row must contain all features and class labels separated by an ascii character.
+Both regression and classification tasks can be carried out but for the latter
+the label class must be encoded in one-hot format.
 
 ## Model creation example
 
 This snippet creates a multilayer perceptron with 784, 100 and 10 neurons per layer
-respectively, with _sig\_frac_ ( x/(1+|x|) )as activation function.
+respectively, with _sig\_frac_, i.e. x/(1+|x|), as activation function.
 
 ```c
 Dataset ds_train = {
@@ -58,7 +59,8 @@ set_rand_weights(&net, -0.7, +0.7);
 ## Execution example
 
 The following is the output of _training.c_, that trains an NN for 3 epochs on
-the partial [MNIST](http://yann.lecun.com/exdb/mnist/) dataset provided in the Kaggle [Digit Recognizer](https://www.kaggle.com/c/digit-recognizer) competition.
+the partial [MNIST](http://yann.lecun.com/exdb/mnist/) dataset provided in the
+Kaggle [Digit Recognizer](https://www.kaggle.com/c/digit-recognizer) competition.
 
 ```
 * IMPORT DATASET
